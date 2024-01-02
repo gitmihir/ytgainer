@@ -84,7 +84,7 @@ if (isset($_POST['submitallvalue'])) {
                             $videoId = getYouTubeVideoId($_POST['ytlink']);
                             for ($i = 0; $i <= $_POST['ytnumber']; $i++) {
                                 ?>
-                                <iframe src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1"
+                                <iframe src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1&mute=1"
                                     style="width: 256px; height: 144px;" allow="autoplay"></iframe>
                                 <?php
                             }
