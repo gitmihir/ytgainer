@@ -84,10 +84,10 @@ if (isset($_POST['submitallvalue'])) {
                             $videoId = getYouTubeVideoId($_POST['ytlink']);
                             for ($i = 0; $i <= $_POST['ytnumber']; $i++) {
                                 ?>
-                                <audio controls autoplay>
+                                <video controls autoplay>
                                     <source src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1" type="audio/mp4">
                                     Your browser does not support the audio element.
-                                </audio>
+                                </video>
                                 <?php
                             }
                             ?>
