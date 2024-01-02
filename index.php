@@ -1,26 +1,26 @@
 <?php
 if (isset($_POST['submitallvalue'])) {
-    function getYouTubeVideoId($url)
-    {
-        $query = parse_url($url, PHP_URL_QUERY);
-        parse_str($query, $params);
-        if (isset($params['v'])) {
-            return $params['v'];
-        } else {
-            return $url[4];
-        }
-    }
-    $ipAddresses = explode(",", $_POST['list_of_ips']);
-    $ytlink = $_POST["ytlink"];
-    $videoId = getYouTubeVideoId($ytlink);
-    $url = __DIR__ . "/ytScript.php?vid=" . $videoId;
-    foreach ($ipAddresses as $ip) {
-        ini_set("display_errors", "On");
-        ini_set("error_reporting", E_ALL);
-        ini_set("max_execution_time", 0);
-        $output = shell_exec("php $url $ip");
-        echo $output;
-    }
+    // function getYouTubeVideoId($url)
+    // {
+    //     $query = parse_url($url, PHP_URL_QUERY);
+    //     parse_str($query, $params);
+    //     if (isset($params['v'])) {
+    //         return $params['v'];
+    //     } else {
+    //         return $url[4];
+    //     }
+    // }
+    // $ipAddresses = explode(",", $_POST['list_of_ips']);
+    // $ytlink = $_POST["ytlink"];
+    // $videoId = getYouTubeVideoId($ytlink);
+    // $url = __DIR__ . "/ytScript.php?vid=" . $videoId;
+    // foreach ($ipAddresses as $ip) {
+    //     ini_set("display_errors", "On");
+    //     ini_set("error_reporting", E_ALL);
+    //     ini_set("max_execution_time", 0);
+    //     $output = shell_exec("php $url $ip");
+    //     echo $output . "</br>";
+    // }
 }
 ?>
 <html>
@@ -42,14 +42,14 @@ if (isset($_POST['submitallvalue'])) {
                 <div class="col-md-4 mt-5">
                     <h3>Please enter details in below fields</h3>
                     <form action="" method="POST">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="list_of_ips" style="margin-bottom: 5px;">List of Ip Addresses
                                 <span style="color: red;">*</span></label>
                             <textarea class="form-control" name="list_of_ips" id="list_of_ips" cols="30" rows="10"
                                 required></textarea>
                             <p style="color: blue;font-size: 13px;font-weight: 700;">Note: Please add
                                 without space. But with comma, E.g.- 1.255.255.254,2.255.255.254,3.255.255.254</p>
-                        </div>
+                        </div> -->
                         <div class="form-group mt-3">
                             <label for="ytlink" style="margin-bottom: 5px;">Youtube Link <span
                                     style="color: red;">*</span></label>
@@ -65,7 +65,35 @@ if (isset($_POST['submitallvalue'])) {
                         </div>
                     </form>
                 </div>
+
                 <div class="col-md-4"></div>
+                <div class="col-md-12">
+                    <?php
+                    if (isset($_POST['submitallvalue'])) {
+                        function getYouTubeVideoId($url)
+                        {
+                            $query = parse_url($url, PHP_URL_QUERY);
+                            parse_str($query, $params);
+                            if (isset($params['v'])) {
+                                return $params['v'];
+                            } else {
+                                return $url[4];
+                            }
+                        }
+                        if (isset($_POST['ytnumber']) && isset($_POST['ytlink'])) {
+                            $videoId = getYouTubeVideoId($_POST['ytlink']);
+                            for ($i = 0; $i <= $_POST['ytnumber']; $i++) {
+                                ?>
+                                <audio controls autoplay>
+                                    <source src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1" type="audio/mp4">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <?php
+                            }
+                            ?>
+                        <?php }
+                    } ?>
+                </div>
             </div>
         </div>
     </section>
