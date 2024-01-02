@@ -18,7 +18,7 @@ if (isset($_POST['submitallvalue'])) {
         ini_set("error_reporting", E_ALL);
         ini_set("max_execution_time", 0);
 
-        $output = shell_exec("php ytScript.php?vid=$videoId $ip");
+        $output = shell_exec("php https://ytgainer.imihir.com/ytScript.php?vid=$videoId $ip");
         echo $output;
     }
 }
