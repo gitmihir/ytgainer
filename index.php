@@ -12,13 +12,18 @@ if (isset($_POST['submitallvalue'])) {
     }
     $ipAddresses = explode(",", $_POST['list_of_ips']);
     $ytlink = $_POST["ytlink"];
+
     $videoId = getYouTubeVideoId($ytlink);
+    $youtubeUrl = filter_var('https://ytgainer.imihir.com/ytScript.php?vid=' . $videoId, FILTER_VALIDATE_URL);
     foreach ($ipAddresses as $ip) {
         ini_set("display_errors", "On");
         ini_set("error_reporting", E_ALL);
         ini_set("max_execution_time", 0);
+        $escapedUrl = escapeshellarg($youtubeUrl);
+        $command = "php $escapedUrl $ip";
+        $output = shell_exec($command);
 
-        $output = shell_exec("php https://ytgainer.imihir.com/ytScript.php?vid=$videoId $ip");
+        //$output = shell_exec("php https://ytgainer.imihir.com/ytScript.php?vid=$videoId $ip");
         echo $output;
     }
 }
