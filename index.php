@@ -15,6 +15,7 @@ if (isset($_POST['submitallvalue'])) {
 
     $videoId = getYouTubeVideoId($ytlink);
     $youtubeUrl = filter_var('https://ytgainer.imihir.com/ytScript.php?vid=' . $videoId, FILTER_VALIDATE_URL);
+    echo __DIR__;
     foreach ($ipAddresses as $ip) {
         ini_set("display_errors", "On");
         ini_set("error_reporting", E_ALL);
