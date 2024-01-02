@@ -85,7 +85,7 @@ if (isset($_POST['submitallvalue'])) {
                             for ($i = 0; $i <= $_POST['ytnumber']; $i++) {
                                 ?>
                                 <iframe src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1"
-                                    style="width: 256px; height: 144px;"></iframe>
+                                    style="width: 256px; height: 144px;" allow="autoplay"></iframe>
                                 <?php
                             }
                             ?>
