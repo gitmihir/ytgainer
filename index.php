@@ -1,28 +1,3 @@
-<?php
-if (isset($_POST['submitallvalue'])) {
-    // function getYouTubeVideoId($url)
-    // {
-    //     $query = parse_url($url, PHP_URL_QUERY);
-    //     parse_str($query, $params);
-    //     if (isset($params['v'])) {
-    //         return $params['v'];
-    //     } else {
-    //         return $url[4];
-    //     }
-    // }
-    // $ipAddresses = explode(",", $_POST['list_of_ips']);
-    // $ytlink = $_POST["ytlink"];
-    // $videoId = getYouTubeVideoId($ytlink);
-    // $url = __DIR__ . "/ytScript.php?vid=" . $videoId;
-    // foreach ($ipAddresses as $ip) {
-    //     ini_set("display_errors", "On");
-    //     ini_set("error_reporting", E_ALL);
-    //     ini_set("max_execution_time", 0);
-    //     $output = shell_exec("php $url $ip");
-    //     echo $output . "</br>";
-    // }
-}
-?>
 <html>
 <title>YT Gainer</title>
 
@@ -84,7 +59,7 @@ if (isset($_POST['submitallvalue'])) {
                             $videoId = getYouTubeVideoId($_POST['ytlink']);
                             for ($i = 0; $i <= $_POST['ytnumber']; $i++) {
                                 ?>
-                                <iframe src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1&mute=1"
+                                <iframe src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=0&mute=0"
                                     style="width: 256px; height: 144px;" allow="autoplay"></iframe>
                                 <?php
                             }
